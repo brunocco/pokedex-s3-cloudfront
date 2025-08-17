@@ -1,0 +1,21 @@
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Arquivos de log
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos do editor
+*.swp
+*.idea/
+*.vscode/
+
+# Credenciais da AWS (não subir)
+*.pem
+*.key
