@@ -1,3 +1,4 @@
+
 # 🌐 Pokédex na AWS com Terraform (S3 + CloudFront + OAC)
 
 Este projeto provisiona automaticamente uma infraestrutura **segura** na
@@ -13,8 +14,14 @@ AWS para hospedar um site estático (Pokédex):
 
 ------------------------------------------------------------------------
 
+## Arquitetura de Solucões na AWS
+
+
+------------------------------------------------------------------------
+
 ## 🗂️ Estrutura de pastas
 
+```
 pokedex-s3-cloudfront/
 │── pokedex/
 │   │── src/
@@ -27,6 +34,32 @@ pokedex-s3-cloudfront/
 │── outputs.tf
 │── providers.tf
 │── README.md
+```
+
+------------------------------------------------------------------------
+
+## 📋 Requisitos
+
+- Conta ativa na **AWS**
+- **AWS CLI** ou **PowerShell** para execução dos comandos
+- **Access Key ID** e **Secret Access Key** de um usuário IAM configurado
+
+------------------------------------------------------------------------
+
+## 🔑 Configuração da AWS CLI
+
+Antes de rodar o Terraform, configure suas credenciais AWS no terminal:
+
+```bash
+aws configure
+```
+
+Informe:
+
+- **AWS Access Key ID**
+- **AWS Secret Access Key**
+- Região padrão (exemplo: `us-east-1`)
+- Formato de saída (`json`)
 
 ------------------------------------------------------------------------
 
@@ -35,7 +68,7 @@ pokedex-s3-cloudfront/
 ### 1. Clonar o repositório
 
 ``` bash
-git clone https://github.com/seu-usuario/pokedex-s3-cloudfront.git
+git clone https://github.com/brunocco/pokedex-s3-cloudfront.git
 cd pokedex-s3-cloudfront
 ```
 
@@ -51,15 +84,18 @@ terraform init
 terraform apply -auto-approve
 ```
 
-➡️ Isso vai: - Criar o bucket S3, CloudFront e OAC\
-- Subir automaticamente os arquivos da pasta `pokedex/` para o bucket\
+➡️ Isso vai: 
+- Criar o bucket S3, CloudFront e OAC  
+- Subir automaticamente os arquivos da pasta `pokedex/` para o bucket  
 - Retornar a URL do site no **output**
 
 ### 4. Acessar o site
 
 Após o apply, veja a saída:
 
-    cloudfront_url = https://xxxxxxxx.cloudfront.net
+```
+cloudfront_url = https://xxxxxxxx.cloudfront.net
+```
 
 ------------------------------------------------------------------------
 
@@ -81,7 +117,7 @@ Neste projeto utilizei o recurso `null_resource + local-exec` para rodar
 o comando `aws s3 sync` automaticamente durante o `terraform apply`.
 
 Assim, a infraestrutura **e** os arquivos do site são provisionados de
-uma só vez.\
+uma só vez.  
 Essa abordagem não é a mais recomendada em ambientes de produção, mas é
 excelente para aprendizado e demonstração prática de automação total.
 
@@ -89,9 +125,9 @@ excelente para aprendizado e demonstração prática de automação total.
 
 ## 🔒 Segurança aplicada
 
--   Bloqueio de acesso público no bucket S3\
--   Criptografia SSE-AES256 no S3\
--   Uso de **CloudFront + OAC** para acesso seguro\
+-   Bloqueio de acesso público no bucket S3  
+-   Criptografia SSE-AES256 no S3  
+-   Uso de **CloudFront + OAC** para acesso seguro  
 -   Redirecionamento HTTP → HTTPS
 
 ------------------------------------------------------------------------
@@ -100,7 +136,6 @@ excelente para aprendizado e demonstração prática de automação total.
 
 Para evitar custos desnecessários na AWS, você pode remover todos os recursos 
 criados pelo Terraform usando o comando destroy.
-
 
 1️⃣ Entrar na pasta do projeto
 ``` bash
@@ -114,9 +149,7 @@ terraform destroy -auto-approve
 Isso irá remover todos os recursos provisionados pelo Terraform, incluindo:
 
 -   Bucket S3
-
 -   Distribuição CloudFront
-
 -   Origin Access Control (OAC)
 
 3️⃣ Confirmar remoção
@@ -124,36 +157,24 @@ Isso irá remover todos os recursos provisionados pelo Terraform, incluindo:
 Verifique no console da AWS:
 
 -   S3 → Buckets → o bucket deve ter sido apagado
-
 -   CloudFront → Distribuições → a distribuição deve ter sido removida
-
 -   OAC → removido automaticamente
 
 💡 Dica: Se você criou recursos manualmente fora do Terraform, verifique e apague também para não gerar custos.
 
-## 🛠️ Tecnologias usadas
-
--   AWS (S3, CloudFront, IAM)\
--   Terraform\
--   AWS CLI\
--   Infraestrutura como Código (IaC)
-
 ------------------------------------------------------------------------
 
-## 📊 Arquitetura
+## 🛠️ Tecnologias usadas
 
-``` mermaid
-graph TD
-    A[Usuário] -->|HTTPS| B[CloudFront CDN]
-    B -->|OAC SigV4| C[S3 Bucket (Pokédex)]
-    C -->|Conteúdo Estático| A
-```
+-   AWS (S3, CloudFront, IAM)
+-   Terraform
+-   AWS CLI
+-   Infraestrutura como Código (IaC)
 
 ------------------------------------------------------------------------
 
 ## ✨ Resultado
 
--   Site estático hospedado de forma **segura** e **automatizada** na
-    AWS\
--   Infraestrutura totalmente versionada e reproduzível com Terraform\
+-   Site estático hospedado de forma **segura** e **automatizada** na AWS  
+-   Infraestrutura totalmente versionada e reproduzível com Terraform  
 -   Demonstração prática de **IaC + Segurança + Automação**
