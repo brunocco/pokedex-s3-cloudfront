@@ -16,6 +16,7 @@ AWS para hospedar um site estático (Pokédex):
 
 ## Arquitetura de Solucões na AWS
 
+![Arquitetura do Projeto](arquitetura/arquitetura.png)
 
 ------------------------------------------------------------------------
 
