@@ -24,17 +24,20 @@ AWS para hospedar um site estático (Pokédex):
 
 ```
 pokedex-s3-cloudfront/
-│── pokedex/
-│   │── src/
-│   │   │── css/
-│   │   │── imagens/
-│   │   │── js/
-│   │── index.html
-│── main.tf
-│── variables.tf
-│── outputs.tf
-│── providers.tf
-│── README.md
+├── pokedex/
+│   ├── src/
+│   │   ├── css/
+│   │   ├── imagens/
+│   │   └── js/
+│   └── index.html
+├── arquitetura/
+│   └── arquitetura.png
+├── main.tf
+├── variables.tf
+├── outputs.tf
+├── providers.tf
+└── README.md
+
 ```
 
 ------------------------------------------------------------------------
